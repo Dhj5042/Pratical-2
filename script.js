@@ -222,22 +222,34 @@ let madd=val=>{
     }
    
 }
-//this is memory remove function which is remove a value in array from last
-let mrev=val=>{
-    console.log(val);
+//sum()
+let sum=()=>{
     for(i=0; i<memory.length; i++){
         m_value +=parseInt(memory[i]);
     }
+    return m_value;
+}
+//this is memory remove function which is remove a value in array from last
+let mrev=val=>{
+    console.log(val);
+    sum();
     ms_remove=((m_value) - (val));
 }
 //this is memory recall function which is display a number from array
 let mrecall=()=>{
     screen.value='';
+    sum();
     console.log(ms_remove);
+    if(ms_remove){
     screen.value=ms_remove
+    ms_remove=0;
+    }
+    else
+    screen.value=m_value
 }
 //this is memory clear function
 let mclear=()=>{
+    screen.value='';
     btnmc.disabled =true;
     btnmr.disabled=true;
     memory=[];
