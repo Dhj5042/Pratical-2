@@ -28,7 +28,7 @@
                                     <small><div id="temp" style="text-align: right; size: 20px;"></div></small>
                                 </div>
                                 <div id="h1">
-                                    <small> <input id="screen" type="text" placeholder="0"  onkeypress='keycode(event)' oninput="this.value = this.value.replace(/[!A-Z a-z , @ & ! # |]/g, '')" autofocus> </small>
+                                    <small> <input id="screen" type="text" placeholder="0"  onkeypress='keycode(event)' oninput="this.value = this.value.replace(/^(\d+[!\+\-\*\/]{1})+\d+$/g,'')" autofocus> </small><!--this.value = this.value.replace(/[!A-Z a-z , @ & ! # |]/g, '')-->
                                 </div>
                             </div>
                         </td>
@@ -100,7 +100,7 @@
                         <td><button class="btn text-black" onclick='divide()'><sup>1</sup>&frasl;<sub>x</sub></button></td>
                         <td><button class="btn text-black" onclick='abs()'>|x|</button></td>
                         <td><button class="btn text-black" onclick='exp()'>exp</button></td>
-                        <td><button class="btn text-black" onclick='mod()'>mode</button></td>
+                        <td><button class="btn text-black bn" onclick='mod()'>mode</button></td>
 
                     </tr>
                     <tr class="py-4">

@@ -7,35 +7,79 @@ for(item of btn)
 {
     item.addEventListener('click',(e)=>{
         btntext=e.target.innerText;
-
+        var spos=screen.value; 
         if(btntext =='×')
-        {
-            btntext= '*';
-            //temp.innerText=screen.value + "*" ;
-            //console.log(temp.innerText);
+        {   
+            btntext='*';
+            duplication();
         }
-
         if(btntext=='÷')
         {
             btntext='/';
-           // temp.innerText=screen.value + "/" ;
-           // console.log(temp.innerText);
+            duplication();
         }
         if(btntext=='+')
         {
-            btntext='+';
-           // temp.innerText=screen.value + "+" ;
-           // console.log(temp.innerText);
+            if(spos.charAt(0)=='+'){
+                btntext=""
+            }else{
+                btntext='+';
+                duplication();
+            }
         }
         if(btntext=='-')
         {
             btntext='-';
-           // temp.innerText=screen.value + "-" ;
-           // console.log(temp.innerText);
+ 
+            duplication();
         }
+        if(btntext=='(')
+        {
+            btntext='(';
+ 
+            duplication();
+        }
+        if(btntext==')')
+        {
+            btntext=')';
+ 
+            duplication();
+        }
+        if(btntext=='mode')
+        {
+            btntext='%';
+ 
+            duplication();
+        }
+       
+      
         screen.value+=btntext;
     });
 }
+//
+function duplication(){
+    var len=screen.value.substr(screen.value.length-1,1);
+    var lastchar=screen.value.length-1;
+    var spos=screen.value; 
+    if(spos.charAt(0) == '+' || spos.charAt(0) == '*' || spos.charAt(0)== '/' ){
+        str = spos.replace("+","")
+        screen.value=str;
+        console.log('removed');
+    }
+    if(!isNaN(len)){      
+        console.log("not a number")      
+    }else{
+        console.log("number")   
+        if(len.charAt(lastchar)== '+' || len.charAt(lastchar)== '-' || len.charAt(lastchar)== '*' || len.charAt(lastchar)== '/' ){
+           
+        }else{
+           // btntext= '*';
+            var len1=screen.value.substr(0,screen.value.length-1);
+            screen.value=len1;    
+      }        
+    }
+}
+
 let equal=()=>{
     temp.innerText=screen.value;
     console.log(temp.innerHTML);
@@ -55,12 +99,13 @@ function keycode(e){
         screen.value=screen.value.substr(0,screen.value.length-1);
         temp.innerText="";
     }
-
-
-/** 
-   if(e.keyCode == 8 || e.keyCode == 0 || e.keyCode == 13 && e.keyCode >= 48 && e.keyCode <= 57){
-    return screen.value=null;
-   }*/
+    if(e.keyCode ==43 ){
+        console.log('print'); 
+        btntext='';   
+        duplication();
+        screen.value+=btntext.substr(0,screen.value.length-1);
+    } 
+    // e.preventDefault();
 
      if(e.keyCode >=64 && e.keyCode <=122){
         console.log(`${e.keyCode} Is not valid`);
