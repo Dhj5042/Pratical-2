@@ -7,73 +7,68 @@ for(item of btn)
 {
     item.addEventListener('click',(e)=>{
         btntext=e.target.innerText;
-        var spos=screen.value; 
         if(btntext =='×')
         {   
-            btntext='*';
-            duplication();
+            firstdigit('*')
         }
         if(btntext=='÷')
         {
-            btntext='/';
-            duplication();
+            firstdigit('/')
         }
         if(btntext=='+')
         {
-            if(spos.charAt(0)=='+'){
-                btntext=""
-            }else{
-                btntext='+';
-                duplication();
-            }
+            firstdigit('+')
         }
         if(btntext=='-')
         {
-            btntext='-';
- 
-            duplication();
+            firstdigit('-')
         }
         if(btntext=='(')
         {
-            btntext='(';
- 
-            duplication();
+            firstdigit('(')
         }
         if(btntext==')')
         {
-            btntext=')';
- 
-            duplication();
+            firstdigit(')')
         }
         if(btntext=='mode')
         {
-            btntext='%';
- 
-            duplication();
+            console.log('mode');
+            firstdigit('%')
         }
-       
-      
+        if(btntext=='.')
+        {
+            console.log('dot');
+            firstdigit('.')
+        }
         screen.value+=btntext;
+       
     });
 }
-//
+let firstdigit=(op)=>{
+        if(!screen.value){
+            console.log("screeen value:-",screen.value);
+            btntext=""
+        }else{
+            btntext=op;
+            //check for multipal occurrence
+            duplication();
+        }
+}
+
+//this is functon check for oprators occurrence
 function duplication(){
     var len=screen.value.substr(screen.value.length-1,1);
     var lastchar=screen.value.length-1;
     var spos=screen.value; 
-    if(spos.charAt(0) == '+' || spos.charAt(0) == '*' || spos.charAt(0)== '/' ){
-        str = spos.replace("+","")
-        screen.value=str;
-        console.log('removed');
-    }
     if(!isNaN(len)){      
         console.log("not a number")      
     }else{
         console.log("number")   
-        if(len.charAt(lastchar)== '+' || len.charAt(lastchar)== '-' || len.charAt(lastchar)== '*' || len.charAt(lastchar)== '/' ){
-           
+        if(len.charAt(lastchar)== '+' || len.charAt(lastchar)== '-' || len.charAt(lastchar)== '*' || len.charAt(lastchar)== '/' || len.charAt(lastchar)== '%' ){
+           console.log('inner');
         }else{
-           // btntext= '*';
+            console.log('outer');
             var len1=screen.value.substr(0,screen.value.length-1);
             screen.value=len1;    
       }        
@@ -99,16 +94,13 @@ function keycode(e){
         screen.value=screen.value.substr(0,screen.value.length-1);
         temp.innerText="";
     }
-    if(e.keyCode ==43 ){
-        console.log('print'); 
-        btntext='';   
-        duplication();
-        screen.value+=btntext.substr(0,screen.value.length-1);
+    if(e.keyCode >=33 && e.keyCode <= 47 || e.keyCode == 59){
+        console.log('block'); 
+        e.preventDefault();
     } 
-    // e.preventDefault();
-
      if(e.keyCode >=64 && e.keyCode <=122){
         console.log(`${e.keyCode} Is not valid`);
+        e.preventDefault();
    } 
  }
 
